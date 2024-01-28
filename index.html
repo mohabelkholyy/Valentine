@@ -149,7 +149,7 @@
             const average =
               dataArray.reduce((acc, val) => acc + val, 0) / bufferLength;
 
-            const scale = 1 + average / 1;
+            const scale = 1 + average / 10;
             const heart = document.getElementById("heart");
 
             // Set the transform-origin to the center of the heart
