@@ -20,6 +20,9 @@
       #heart {
         font-size: 40px;
         transition: transform 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: absolute;
         left: 50%;
         top: 50%;
@@ -146,10 +149,14 @@
             const average =
               dataArray.reduce((acc, val) => acc + val, 0) / bufferLength;
 
-            const scale = 1 + average / 10;
-            document.getElementById(
-              "heart"
-            ).style.transform = `scale(${scale}) translate(-50%, -50%)`;
+            const scale = 1 + average / 1;
+            const heart = document.getElementById("heart");
+
+            // Set the transform-origin to the center of the heart
+            heart.style.transformOrigin = "center center";
+
+            // Apply the transformation
+            heart.style.transform = `scale(${scale})`;
 
             requestAnimationFrame(update);
           }
