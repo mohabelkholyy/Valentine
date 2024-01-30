@@ -3,175 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Mokka's Valentine's Day</title>
-    <style>
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #fce4ec;
-        text-align: center;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-      }
-
-      #heart {
-        font-size: 40px;
-        transition: transform 0.2s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      header {
-        background-color: #e91e63;
-        color: #fff;
-        padding: 10px;
-        margin-top: 20px;
-      }
-      
-      section {
-        width: 90%;
-        max-width: 600px;
-        margin: 10px auto;
-        padding: 20px;
-        background-color: rgba(255, 255, 255, 0.8);
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        position: relative;
-      }
-
-      section img {
-        width: 1000%;
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        margin-top: 15px;
-      }
-
-      footer {
-        background-color: #e91e63;
-        color: #fff;
-        padding: 10px;
-        bottom: 0;
-        width: 100%;
-      }
-
-      #toggleButton {
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin-top: 10px;
-        cursor: pointer;
-        border-radius: 5px;
-      }
-
-      #toggleButton:hover {
-        background-color: #45a049;
-      }
-    </style>
+    <link rel="stylesheet" />
+    <link rel="shortcut icon" type="image/png" href="./img/heart.svg" />
+    <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
-    <header>
-      <h1>Happy Valentine's Day, Mokka!</h1>
-    </header>
-
-    <section>
-      <div id="heart">❤️</div>
-      <p>
-        I wanted to make you something special fa olt astakhdem kol haga
-        et3alemtaha
-      </p>
-      <img src="Mokka.jpg" alt="Our Photo" />
-      <p>
-        You are my greatest joy and the love of my life. Happy Valentine's Day,
-        and here's to many more chapters of our love story!
-      </p>
-      <p>
-        Forever Yours,
-        <br />
-        Bobo!
-      </p>
-    </section>
-
-    <footer>
-      <p>Scream in the microphone to make my heart go CRAZYY!</p>
-      <button id="toggleButton">Toggle Microphone</button>
-    </footer>
-
-    <script>
-      let isMicrophoneOn = false;
-      let stream;
-
-      document.addEventListener("DOMContentLoaded", () => {
-        const toggleButton = document.getElementById("toggleButton");
-
-        toggleButton.addEventListener("click", () => {
-          if (isMicrophoneOn) {
-            // Stop the microphone
-            stream.getTracks().forEach((track) => track.stop());
-            isMicrophoneOn = false;
-            toggleButton.textContent = "Start Microphone";
-          } else {
-            // Start the microphone
-            navigator.mediaDevices
-              .getUserMedia({ audio: true })
-              .then(handleSuccess)
-              .catch(handleError);
-            toggleButton.textContent = "Stop Microphone";
-          }
-        });
-
-        function handleSuccess(newStream) {
-          const audioContext = new (window.AudioContext ||
-            window.webkitAudioContext)();
-          const analyser = audioContext.createAnalyser();
-          const source = audioContext.createMediaStreamSource(newStream);
-          source.connect(analyser);
-
-          analyser.fftSize = 256;
-          const bufferLength = analyser.frequencyBinCount;
-          const dataArray = new Uint8Array(bufferLength);
-
-          function update() {
-            analyser.getByteFrequencyData(dataArray);
-            const average =
-              dataArray.reduce((acc, val) => acc + val, 0) / bufferLength;
-
-            const scale = 1 + average / 25;
-            const heart = document.getElementById("heart");
-
-            // Set the transform-origin to the center of the heart
-            heart.style.transformOrigin = "center center";
-
-            // Apply the transformation
-            heart.style.transform = `scale(${scale})`;
-
-            requestAnimationFrame(update);
-          }
-
-          update();
-
-          // Store the new stream to stop it later
-          stream = newStream;
-          isMicrophoneOn = true;
-        }
-
-        function handleError(error) {
-          console.error("Error accessing microphone:", error);
-        }
-      });
-    </script>
+    <div class="container">
+      <div class="one">
+        <h1 class="one">
+          <span id="name">Mokka</span>
+        </h1>
+        <p class="two" id="greetingText">This was made with LOVE</p>
+      </div>
+      <div class="three">
+        <p>It's Valentine's Day</p>
+      </div>
+      <div class="four">
+        <div class="text-box">
+          <p class="hbd-chatbox">Happy Valentine's Day habiby blah blah...</p>
+          <p class="fake-btn">Send</p>
+        </div>
+      </div>
+      <div class="five">
+        <p class="idea-1">That's what I was going to do.</p>
+        <p class="idea-2">Bas olt laa</p>
+        <p class="idea-3">
+          Fakart baa en I wanted to do something <strong>special</strong>.
+        </p>
+        <p class="idea-4">Because,</p>
+        <p class="idea-5">
+          You are Special
+          <span>:)</span>
+        </p>
+        <p class="idea-6">
+          <span>S</span>
+          <span>O</span>
+        </p>
+      </div>
+      <div class="six">
+        <img src="Mokka.jpg" alt="" class="girl-dp" id="imagePath" />
+        <div class="wish">
+          <h3 class="wish-hbd">Happy Valentine's Day Habiby</h3>
+          <h5 id="wishText">
+            You are my greatest joy and the love of my life, and here's to many
+            more chapters of our love story!
+          </h5>
+        </div>
+      </div>
+      <div class="nine">
+        <p id="replay">Click, if you want to watch it again.</p>
+        <p>Forever Yours, BOBO</p>
+        <p class="last-smile">:)</p>
+      </div>
+    </div>
   </body>
+
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+  <script type="text/babel" src="main.js"></script>
 </html>
