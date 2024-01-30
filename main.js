@@ -222,7 +222,7 @@ const animationTimeline = () => {
       {
         scale: 1,
         rotationY: 0,
-        color: "#ff69b4",
+        color: "#e91e63",
         ease: Expo.easeOut,
       },
       0.1,
@@ -254,6 +254,7 @@ const animationTimeline = () => {
       opacity: 0,
       y: 30,
       zIndex: "-1",
+      delay: 7,
     })
     .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
     .to(
